@@ -46,10 +46,8 @@ require 'colorize'
 def main_menu 
   puts "---8-BALL---"
   puts "1) ASK A QUESTION?"
-  puts "2) ADD ANSWER 2 BALL"
-  puts "3) Edit Contact"
-  puts "4) Delete Contact"
-  puts "5) Exit"
+  puts "2) REVEAL SECRETS"
+  puts "3) .: E X I T :."
 
   input = gets.strip
 
@@ -57,12 +55,8 @@ def main_menu
   when "1"
     shake_ball
   when "2"
-    add_answer
+    add_answer 
   when "3"
-    edit_contacts
-  when "4"
-    delete_contacts  
-  when "5"
     exit_app
   else
     puts "Invalid Entry, Try Again."
@@ -71,6 +65,7 @@ def main_menu
 end
 
 def shake_ball
+  print `clear`
   puts "--- MAGIC-8-BALL ---".colorize(:green)
   puts "Welcome curious one, what is your question?".colorize(:yellow)
   
@@ -87,61 +82,115 @@ def shake_ball
         sleep (3)
         print `clear`
       puts "__.:__#{@fortune.sample}__:.__".colorize(:magenta)
-    puts "|: :|"
-    puts "|: :|"
-    puts "|: :|"
-    puts "|: :|"
+    puts ""
+    puts ""
+    puts ""
+    puts ""
     puts "Ask Again? (y/n)"
       shake = gets.strip.downcase
         if shake == "y" 
-          print 'clear'
+          print `clear`
           puts shake_ball
         else 
         print `clear`
         puts "Alright, I'll be here when you are ready :) ".colorize(:green)
-        puts "|: :|"
-        puts "|: :|"
-        puts "|: :|"
-        puts "|: :|"
+        sleep(2)
+        print `clear`
         main_menu
     end
 end
 
 def add_answer
-  puts "What answer would you like to add"
-  answer = gets.strip
-  if @fortune.include?(answer) 
-    # include? is boolean => true; false
-    puts "Answer Already Exist"
-    add_answer
+  print `clear`
+  puts "You must know the SECRET PASSWORD!:"
+
+  password = gets.strip.downcase
+  print `clear`
+
+  case password
+
+  when "add_answers"
+    easter_egg
+  when "reset_answers"
+    easter_egg2
+  when "print_answers"
+    easter_egg3
   else
-    puts "Answer has been added"
-    @fortune << answer
-    main_menu
+    print `clear`
+    puts "NOPE"
+    sleep(1)
+    puts "Nice Try!"
+    sleep(1)
+    puts "Try Again!!"
+    sleep(1)
+    print `clear`
+
+    main_menu  
   end
-  # puts "What's the password?"
-  # pw = gets.strip.downcase
-  #   if pw = "add answer"
-  #     puts "What would you like to add?"
-
-  #   end
-
 end
 
-
 def exit_app
+  print `clear`
   puts "You sure you dont wanna ask a question?"
   puts "Type 'QUIT' to exit!"
   quit_app = gets.strip.downcase
     if quit_app == "quit"
       print `clear`
-      puts "Until next time!"
+      puts "As You Wish, Until next time!"
       sleep (1)
       print `clear`
     else
+      print `clear`
       puts "Invalid Entry, Try Again"
+      main_menu
     end
+  end
+
+def easter_egg
+  puts" Lemme see..."
+  sleep (2)
+  puts "YOU GOT IT!!!"
+  sleep(2)
+  print `clear`
+  puts "What answer would you like to add"
+
+  input = gets.strip 
+  if @fortune.include?(input) 
+  print `clear`
+  puts "Answer Already Exist"
+  sleep(1)
+  puts "Lets go back to the menu..."
+  sleep(1)
+  print `clear`
+  main_menu
+  else
+  print`clear`
+  puts "Answer has been added!"
+  puts "What's Next???"
+  @fortune << answer
+  main_menu
+  end
 end
+
+def easter_egg2
+
+end
+
+def easter_egg3
+  puts "Lemme see..."
+  sleep (2)
+  puts "YOU GOT IT!!!"
+  sleep(2)
+  print `clear`
+  @fortune.each_with_index do |fortune, index|
+    puts "#{index + 1}) #{fortune}"
+  end
+  puts " "
+  puts " "
+  puts "__________________"
+  main_menu
+end
+
 
 
 
