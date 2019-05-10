@@ -1,7 +1,3 @@
-require 'pry'
-require 'colorize'
-
-
 
 ##-------------MAGIC EIGHTBALL-------------------
 # Basic Objectives:
@@ -24,7 +20,8 @@ require 'colorize'
 # Create a menu to handle all the functionality.
 # Use classes to handle the Eight Ball Program and Answers.
 # Use the colorize gem (from lecture) to add some color to your application.d
-
+require 'pry'
+require 'colorize'
 
 @fortune = [
   "NOPE",
